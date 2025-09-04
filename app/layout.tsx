@@ -1,12 +1,20 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { DM_Sans } from 'next/font/google';
+import localFont from 'next/font/local';
 
-// TODO: Optimize font loading strategy for better performance
-const dmSans = DM_Sans({ 
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  display: 'swap',
+const dmSans = localFont({
+  src: [
+    {
+      path: '../public/fonts/dm-sans/dmsans-variablefont_opszwght-webfont.woff2',
+      style: 'normal'
+    },
+    {
+      path: '../public/fonts/dm-sans/dmsans-italic-variablefont_opszwght-webfont.woff2',
+      style: 'italic'
+    }
+  ],
+  variable: '--font-dm-sans',
+  display: 'swap'
 });
 
 export const metadata: Metadata = {

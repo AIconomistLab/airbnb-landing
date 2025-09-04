@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Google Font - DM Sans */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  /* Airbnb Color Palette */
+  --primary-100: #FF5A5F;
+  --primary-200: #ff8e8c;
+  --primary-300: #fff7ef;
+  --accent-100: #00A699;
+  --accent-200: #004940;
+  --text-100: #333333;
+  --text-200: #5c5c5c;
+  --bg-100: #FFFFFF;
+  --bg-200: #f5f5f5;
+  --bg-300: #cccccc;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    font-family: 'DM Sans', sans-serif;
+    @apply bg-white text-gray-900;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* TODO: Add more reusable component styles as the project grows */
+  .btn-primary {
+    @apply bg-[var(--primary-100)] hover:bg-[var(--primary-200)] text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105;
+  }
+  
+  .btn-secondary {
+    @apply bg-[var(--accent-100)] hover:bg-[var(--accent-200)] text-white font-medium px-6 py-3 rounded-lg transition-all duration-200 hover:scale-105;
+  }
+  
+  /* FIXME: Review these animations for performance on mobile devices */
+  .fade-in-up {
+    @apply transform translate-y-4 opacity-0 transition-all duration-700 ease-out;
+  }
+  
+  .fade-in-up.in-view {
+    @apply translate-y-0 opacity-100;
+  }
+}

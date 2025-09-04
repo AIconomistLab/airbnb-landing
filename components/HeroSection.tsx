@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { ArrowRight, Star, Users, Home } from 'lucide-react';
 
 /**
@@ -18,16 +19,18 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url("https://images.pexels.com/photos/1365425/pexels-photo-1365425.jpeg?auto=compress&cs=tinysrgb&w=1600")',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          filter: 'brightness(0.7)',
-        }}
-      />
+      {/* Background Image with next/image */}
+      <div className="absolute inset-0 -z-10">
+        <Image
+          src="/hero.jpg"
+          alt="Casa acogedora con vistas"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: 'cover' }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
       
       {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-transparent to-black/20 z-10" />

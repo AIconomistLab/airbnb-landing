@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Heart, Menu, X } from 'lucide-react';
 
 /**
@@ -11,8 +11,28 @@ import { Heart, Menu, X } from 'lucide-react';
  */
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  // Set header height as CSS custom property for dynamic spacing
+  useEffect(() => {
+    const setHeaderHeight = () => {
+      if (headerRef.current) {
+        const height = headerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--header-h', `${height}px`);
+      }
+    };
+
+    // Set initial height
+    setHeaderHeight();
+    
+    // Update on resize
+    window.addEventListener('resize', setHeaderHeight);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', setHeaderHeight);
+  }, [isMenuOpen]); // Re-run when menu state changes
 
   const navigationItems = [
     { name: 'Promociones', href: '#promociones' },
@@ -22,7 +42,10 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+    <header 
+      ref={headerRef}
+      className="sticky top-0 z-50 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}

@@ -35,7 +35,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="es">
-      <body className={`${dmSans.className} antialiased`}>{children}</body>
+      <body className={`${dmSans.className} antialiased`}>
+        <main className="pt-[var(--header-h,4rem)]">
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
